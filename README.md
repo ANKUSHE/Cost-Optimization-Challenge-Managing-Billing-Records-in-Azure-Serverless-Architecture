@@ -33,8 +33,4 @@ This solution addresses a cost optimization challenge using Azure serverless com
 - Azure Blob Storage
 - Python SDKs
 
-## Cost Estimation
 
-- ₹0 to ₹2 INR for a 1-day test/demo using Azure Free Tier
-
----
