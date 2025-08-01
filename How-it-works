@@ -1,0 +1,53 @@
+📦 What's the Problem?
+Our billing records are stored in Azure Cosmos DB.
+
+It's getting expensive because:
+
+There are millions of records.
+
+Old records (3+ months) are rarely used.
+
+We want to save money but still keep the data available.
+
+✅ Our Smart Solution
+We use serverless Azure Functions to:
+
+Move old data to cheaper storage (Blob Storage)
+
+Read data from the right place (new = Cosmos DB, old = Blob)
+
+⚙️ Step-by-Step Flow
+Step 1: Archiving Old Data
+Azure runs archive_function.py automatically (like a robot).
+
+It checks Cosmos DB.
+
+If a record is older than 3 months:
+
+It saves the record in Azure Blob Storage.
+
+Then it deletes it from Cosmos DB.
+
+👉 This reduces the cost of storing old data.
+
+Step 2: Reading a Record
+A user requests a billing record.
+
+Azure runs read_function.py.
+
+That function:
+
+Checks if the record is new → reads from Cosmos DB.
+
+If it’s old → reads from Blob Storage.
+
+👉 Users never know the difference. They just get their data.
+
+🧠 Why It’s Great
+💰 Cheaper (Blob Storage is way cheaper than Cosmos DB)
+
+⚡ Fast enough (users get old data in a few seconds)
+
+🛠️ No API changes needed
+
+☁️ Serverless = less maintenance
